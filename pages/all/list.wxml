@@ -1,0 +1,31 @@
+
+<import src="../../tm/tm.wxml"/>
+<!--logs.wxml-->
+<view class="container log-list">
+
+
+  <!-- <block wx:for="{{logs}}" wx:for-item="log" wx:key="*this">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block>  -->
+
+  <!--列表渲染wx:for 
+  
+  使用wx:for-item可以指定数组当前元素的变量名
+  使用wx:for-index可以指定数组当前下标的变量名：
+   -->
+    <view class="classname" wx:for="{{arrObj}}">
+    <text>{{index}}.</text>
+    <text>{{item.title}}</text>
+    <view class="classname">
+      <text>{{item.info}}</text>
+    </view>
+    </view>  
+
+   <!-- <view class="classname" wx:for="{{arrObj}}" wx:for-item='no' wx:for-index="num"> 
+     <text>{{num}}:{{no.title}}:{{no.info}}</text> 
+   <!-- <view class="classname" wx:for="{{arrObj}}"> -->
+    <!-- <text>{{index}}:{{item.title}}:{{item.info}}</text> -->
+   <!-- </view> -->
+
+  <template is="item" data="{{text: '我是模板007'}}"/>
+</view>
