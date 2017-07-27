@@ -1,0 +1,26 @@
+/* pages/guide/guide.wxss */
+.wrap{
+  font-size:0;
+}
+.poster{
+  width: 100%;
+  position:relative;
+  left:0;
+  top:0;
+  z-index:1;
+}
+.download{
+    width:100px;
+    height:40px;
+    line-height:40px;
+    font-size:16px;
+    text-align:center;
+    color:white;
+    background-color:#0873FF;
+    border-radius:4px;
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    margin-left:-50px;
+    z-index:999;
+}

@@ -1,0 +1,54 @@
+/* pages/guide/activity.wxss */
+
+@import "./../../wxParse/wxParse.wxss";
+.top{
+    display: block;
+    width: 90%;
+    margin: 2.5% auto;
+}
+.img{
+    width: 100%;
+}
+.info{
+    display: block;
+    width: 90%;
+    margin: 2.5% auto;
+}
+.title{
+    border-left: 3px solid #42A7F4;
+    padding-left: 10px;
+    margin-bottom:10px;
+}
+.text{
+
+}
+.content{
+    display: block;
+    width: 90%;
+    margin: 2.5% auto;
+}
+
+.footer{
+    width:130px;
+    height:40px;
+    margin:20px auto;
+    padding:0 20px;
+    background-color:red;
+    border-radius:6px;
+    font-size:0;
+}
+.invite{
+    width:30px;
+    height:30px;
+    margin:5px auto;
+    vertical-align: top;
+}
+.btn{
+    color:white;
+    display:inline-block;
+    height:30px;
+    line-height:30px;
+    margin:5px auto;
+    margin-left:10px;
+    font-size:16px;
+}

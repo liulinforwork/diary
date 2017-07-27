@@ -1,0 +1,115 @@
+<!--pages/detail/index.wxml-->
+<view class="wrap">
+
+  <view class="pic">
+
+    <swiper autoplay="auto" interval="5000" duration="500"  current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
+      <block wx:for="{{imgUrls}}" wx:key="unique">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" />
+        </swiper-item>
+      </block>
+
+      <view class="dots">
+        <block wx:for="{{imgUrls}}" wx:key="unique">
+         <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
+        </block>
+      </view>
+    </swiper>
+
+    <view class="life">
+      <view>
+        <text class="name">就像一万道光芒</text>
+        <view class="gender girl" wx:if="{{gender == 0}}">
+          <image src="../../images/girl.png"></image>
+          <text>{{age}}</text>
+        </view>
+        <view class="gender boy" wx:if="{{gender == 1}}">
+          <image src="../../images/boy.png"></image>
+          <text>{{age}}</text>
+        </view>
+      </view>
+      <view class="time">一天前活跃</view>
+    </view>
+
+
+    <view class="pic">
+      <view class="action">
+        <view class="collect" catchtap="toGuide">
+          <image src="../../images/collect.png"></image>
+          <view class="text">收藏</view>
+        </view>
+        <view class="greet" catchtap="toGuide">
+          <image src="../../images/greet.png"></image>
+          <view class="text">打招呼</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="info">
+
+    <view class="info_title">
+      <image src="../../images/info.png"></image>
+      <text class="dotted">个人信息</text>
+    </view>
+
+    <view class="flex-row info_cnt" style="display: block;">
+      <view class="flex-view-item">学校：{{info.school}}</view>
+      <view class="flex-view-item">院系：{{info.a}}</view>
+      <view class="flex-view-item">家乡：{{info.b}}</view>
+      <view class="flex-view-item">体重：{{info.c}}</view>
+      <view class="flex-view-item">身高：{{info.d}}</view>
+      <view class="flex-view-item">签名：{{info.e}}</view>
+    </view>
+  </view>
+
+  <view class="label">
+    <view class="label_title">
+      <image src="../../images/label.png"></image>
+      <text class="dotted">个人标签</text>
+    </view>
+
+    <view class="flex-row label_cnt" style="display: block;">
+      <view class="flex-view-item" wx:for="{{label}}" wx:key="unique">
+        <text class=''>{{item.title}}</text>
+
+        <view style="display:inline-block;" wx:if="{{item.title == '外形'}}">
+          <view class="label_item">
+            <text class="flex-row" wx:for="{{item.list}}" wx:key="unique">
+                <text class="flex-view-item" class="label_color label_comm">{{item}}</text>
+            </text>
+          </view>
+        </view>
+
+        <view style="display:inline-block;" wx:if="{{item.title == '爱好'}}">
+          <view class="label_item">
+            <text class="flex-row" wx:for="{{item.list}}" wx:key="unique">
+                <text class="flex-view-item" class="label_color1 label_comm">{{item}}</text>
+            </text>
+          </view>
+        </view>
+
+        <view style="display:inline-block;" wx:if="{{item.title == '性格'}}">
+          <view class="label_item">
+            <text class="flex-row" wx:for="{{item.list}}" wx:key="unique">
+                <text class="flex-view-item" class="label_color2 label_comm">{{item}}</text>
+            </text>
+          </view>
+        </view>
+
+        <view style="display:inline-block;" wx:if="{{item.title == '技能'}}">
+          <view class="label_item">
+            <text class="flex-row" wx:for="{{item.list}}" wx:key="unique">
+                <text class="flex-view-item" class="label_color3 label_comm">{{item}}</text>
+            </text>
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+
+
+</view>

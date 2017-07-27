@@ -1,0 +1,22 @@
+<!--pages/activity/activity.wxml-->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="wrap">
+     <view class="top">
+        <image src="./../../images/1.jpg" alt="图片加载失败" class="img"></image>
+     </view>
+     <view class="info">
+        <view class="title">学生活动第二期</view>
+        <view class="text">校园联谊活动说明校园联谊活动说明校园联谊活动说明校园联谊活动说明校园联谊活动说明</view>
+     </view>
+
+      <view class="footer" catchtap="toGuide">
+        <image src="../../images/invite.png" class="invite"></image>
+        <text class="btn">报名活动</text>
+      </view>
+
+     <view class="content">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+     </view>
+
+
+</view>

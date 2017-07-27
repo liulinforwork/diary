@@ -1,0 +1,69 @@
+<!--index.wxml-->
+
+<view class="container">
+
+    <view class="header" bindtap="toActivity" wx:if='{{isShow}}'>
+       <image class="banner" src="http://oc1bb7j9q.bkt.clouddn.com/2.jpg" mode="widthFix"></image>
+    </view>
+
+
+    <scroll-view scroll-y="true" class="scroll-view_height" bindscrolltolower="loadMore">
+
+
+        <view class="wrap" style="flex-direction:column;">
+
+                    <view wx:if="{{isEmpty}}" class="empty">
+                        <image src="../../images/empty.png" class="empty_img" mode="widthFix"></image>
+                    </view>
+
+                    <view wx:if="{{list.length!==0}}" class="list" wx:key="unique" wx:for="{{list}}" catchtap="toDetail" id="{{item.id}}">
+                      <view class="head_wrap">
+                        <view class="head">
+                          <image src="{{item.imgUrl}}"></image>
+                        </view>
+                        <view class="info">
+                          <view class="name">{{item.name}}</view>
+                          <view class="gender girl" wx:if="{{item.gender == 0}}">
+                            <image src="../../images/girl.png"></image>
+                            <text>{{item.age}}</text>
+
+                          </view>
+                          <view class="gender boy" wx:if="{{item.gender == 1}}">
+                            <image src="../../images/boy.png"></image>
+                            <text>{{item.age}}</text>
+                          </view>
+                          <view class="school">{{item.school}}</view>
+                        </view>
+                      </view>
+
+                      <view class="section pic">
+                        <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
+                          <image class="scroll-view_H" src="{{item.imgUrl}}"></image>
+                          <image class="scroll-view_H" src="{{item.imgUrl}}"></image>
+                          <image class="scroll-view_H" src="{{item.imgUrl}}"></image>
+                          <image class="scroll-view_H" src="{{item.imgUrl}}"></image>
+                          <image class="scroll-view_H" src="{{item.imgUrl}}"></image>
+                        </scroll-view>
+                      </view>
+                      <view class="action">
+                          <view class="collect" catchtap="toGuide">
+                            <image src="../../images/collect.png"></image>
+                            <view class="text">收藏</view>
+                          </view>
+                          <view class="greet" catchtap="toGuide">
+                            <image src="../../images/greet.png"></image>
+                            <view class="text">打招呼</view>
+                          </view>
+                      </view>
+                    </view>
+
+            </view>
+
+        <view class="tips1" wx:if="{{!isEmpty}}">
+            <view wx:if="{{hasMore}}" style="display: flex;flex-direction: row;align-items: center;align-self: center;justify-content: center;">
+                <icon class="load" type="waiting" size="20"/><text style="display:inline-block;margin-left:10px">玩命的加载中...</text>
+            </view>
+            <view wx:else><text>没有更多内容了</text></view>
+        </view>
+    </scroll-view>
+</view>

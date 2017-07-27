@@ -1,0 +1,178 @@
+/* pages/detail/index.wxss */
+.wrap{
+
+}
+.pic,.info,.label{
+  border-bottom: 5px solid #f2f2f2;
+}
+
+.swiper{
+    height:300px;
+}
+image.slide-image{
+  width: 100%;
+  height:300px;
+}
+.pic .dots{
+ position: absolute;
+ left: 0;
+ right: 0;
+ bottom: 20rpx;
+ display: flex;
+ justify-content: center;
+}
+.pic .dots .dot{
+ margin: 0 8rpx;
+ width: 14rpx;
+ height: 14rpx;
+ background: #fff;
+ border-radius: 8rpx;
+ transition: all .6s;
+}
+.pic .dots .dot.active{
+ width: 28rpx;
+ background: black;
+}
+
+
+
+
+.life{
+    margin:10px;
+}
+.name,.age{
+    font-size:16px;
+}
+.name{
+    margin-right:10px;
+}
+.gender{
+  display:inline-block;
+  height: 15px;
+  line-height:15px;
+  margin:5px 0;
+  padding:2.5px 5px;
+  border-radius: 2px;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+}
+.gender image{
+  width:12px;
+  height:12px;
+  margin:1.5px 0;
+  vertical-align: top;
+  margin-right:2px;
+}
+.boy{
+    background-color: #57C9EF;
+}
+.girl{
+    background-color: #FF87A8;
+}
+.time{
+    font-size:14px;
+    margin-top:2px;
+}
+
+
+
+
+.action{
+  width: 100%;
+  margin-top: 10px;
+}
+.collect,.greet{
+  display: inline-block;
+  width: 49.5%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center;
+  margin: 2% 0;
+}
+.collect{
+  border-right: 1px solid #f2f2f2;
+}
+.greet{
+}
+.text{
+  display:inline-block;
+  height:30px;
+  line-height:30px;
+  margin-left:10px;
+}
+.collect image,.greet image{
+    width:20px;
+    height:20px;
+    margin:5px 0;
+    vertical-align: top;
+}
+.greet image{
+    width:22.1px;
+    height:20px;
+}
+
+
+
+
+.info_title,.label_title{
+    font-size:14px;
+    padding:10px;
+}
+.info_title image,.label_title image{
+    width:20px;
+    height:20px;
+    vertical-align: top;
+}
+.dotted{
+    display:inline-block;
+    height:20px;
+    line-height:20px;
+    margin-left:10px;
+}
+.info_cnt,.label_cnt{
+    padding:0 10px;
+}
+.info_title{
+
+}
+.info_cnt{
+
+}
+.flex-view-item{
+    padding-bottom:7px;
+    font-size:16px;
+    padding-top:5px;
+    border-bottom:1pt solid #f2f2f2;
+}
+.label_title{
+
+}
+.label_cnt{
+
+}
+
+.label_item{
+    margin-left:10px;
+}
+.label_comm{
+    display:inline-block;
+    margin-top:5px;
+    margin-right:5px;
+    padding:2px;
+    border-radius:2px;
+    color:white;
+}
+.label_color{
+    background-color:#009833;
+}
+.label_color1{
+    background-color:#D65742;
+}
+.label_color2{
+    background-color:#504F7D;
+}
+.label_color3{
+    background-color:#0032CC;
+}
