@@ -1,73 +1,24 @@
-/* pages/guide/guide.js */
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+  // 初始数据
   data: {
+  },
 
-  },
-  download:function (e) {
-    // wx.reLaunch({
-    //   url:'http://a.app.qq.com/o/simple.jsp?pkgname=com.mar.ui'
-    // })
-    // window.location.href = 'http://a.app.qq.com/o/simple.jsp?pkgname=com.mar.ui'
-    console.log(window)
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  // 监听页面加载
   onLoad: function (options) {
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  choiceWordindex:function () {
+    this.setData({
+      toView: 'load',
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
+  // 用户点击右上角分享
   onShareAppMessage: function () {
     return {
-      title: '快来加入校园联谊吧！',
+      title: '快加入校园联谊吧！',
       path: '/pages/guide/guide',
       success: function(res) {
         // 分享成功

@@ -1,114 +1,61 @@
-//index.js
-
-//获取应用实例
-// var app = getApp();
 var comm = require("./../../utils/common");
 
 Page({
+
+  // 初始化数据
   data: {
-    isShow:true,
-    list1:[
-      {
-        name:'速度与激情第一步速度与激情第一步',
-        age:24,
-          imgUrl:'./../../images/1.jpg',
-          school:'四川大学',
-          gender:0,
-        id:1
-      },
-      {
-        name: '速度与激情第二步',
-            age: 24,
-          imgUrl: './../../images/1.jpg',
-          school: '四川大学',
-          gender: 1,
-        id:2
-      },
-      {
-        name: '速度与激情第二步',
-            age: 24,
-          imgUrl: './../../images/1.jpg',
-          school: '四川大学',
-          gender: 0,
-        id:3
-      },
-      {
-        name: '速度与激情第二步',
-        age: 24,
-        imgUrl: './../../images/1.jpg',
-        school: '四川大学',
-        gender: 1,
-        id:4
-      }],
-    // list1:[],
-    list2:[
-      {
-        name: '1',
-        age: 24,
-        imgUrl: './../../images/1.jpg',
-        school: '四川大学',
-        gender: 1,
-        id:5
-      },
-      {
-        name: '2',
-        age: 24,
-        imgUrl: './../../images/1.jpg',
-        school: '四川大学',
-        gender: 1,
-        id:6
-      },
-      {
-        name: '3',
-        age: 24,
-        imgUrl: './../../images/1.jpg',
-        school: '四川大学',
-        gender: 1,
-        id:7
-      },
-      {
-        name: '4',
-        age: 24,
-        imgUrl: './../../images/1.jpg',
-        school: '四川大学',
-        gender: 1,
-        id:8
-      }
-    ],
-    list:[],
+    isShow:null,
+    list:null,
     page: 1,
-    size: 20,
-    isEmpty:false,
+    banner:null,
     hasMore:true,
     isFreshing:false
   },
+
+  // 初次加载
   onLoad: function () {
+
     var that = this;
 
-    comm.ajax("get","http://test.appserver.com/activity/getSingEndTime?userId=7154&timestamp=1500890882472&sign=ec70c750484fbc00656b6dde3844b025&para=%7B%22userId%22%3A%227154%22%2C%22coordinate%22%3A%5B30.588552%2C104.05451%5D%7D&version=1.6.1&terminal=1&pim=a53a1695a8920b38383d07df393bced4&h5=0",{
-      text:1
+    comm.ajax("POST","/wechat/applet/loadHome",{
+      pageNo:that.data.page
     },function (res) {
+
       switch (res.data.code){
         case 200:
 
-          that.setData({
-            list:that.data.list1,
-          });
-          // that.setData({
-          //   list:that.data.list1,
-          //   isEmpty:true
-          // });
+          (res.data.data.banner === undefined)?that.data.isShow=false:that.data.isShow=true;
 
+
+          for(let i=0;i<res.data.data.users.length;i++){
+            res.data.data.users[i].photos = JSON.parse(res.data.data.users[i].photos)
+            res.data.data.users[i].birthDay = comm.jsGetAge(new Date().getTime(),res.data.data.users[i].birthDay)
+          }
+
+          // 如果初次加载数据小于20条 代表没有分页关闭加载器
+          if(res.data.data.users.length<20){
+            that.setData({
+              hasMore:false
+            });
+          }
+
+          that.setData({
+            list:res.data.data.users,
+            banner:res.data.data.banner,
+          });
+
+          that.data.page++;
               break;
         case 400:
               break;
         default:
+            console.log("接口请求错误");
               break;
       }
-
     },function(err){
-      // console.log(err);
+      console.log(err);
     });
+
   },
 
   // 加载更多
@@ -120,19 +67,35 @@ Page({
     if(that.data.isFreshing){
       return;
     }else{
-      comm.ajax("get","http://test.appserver.com/activity/getSingEndTime?userId=7154&timestamp=1500890882472&sign=ec70c750484fbc00656b6dde3844b025&para=%7B%22userId%22%3A%227154%22%2C%22coordinate%22%3A%5B30.588552%2C104.05451%5D%7D&version=1.6.1&terminal=1&pim=a53a1695a8920b38383d07df393bced4&h5=0",{
-        text:1
+      comm.ajax("POST","/wechat/applet/loadHome",{
+        pageNo:that.data.page
       },function (res) {
-        setTimeout(function () {
+
+        if(res.data.data.users.length === 0){
+
           that.setData({
-            list: that.data.list.concat(that.data.list2),
+            hasMore:false
           });
+
+        }else{
+
+          for(let i=0; i<res.data.data.users.length; i++){
+            res.data.data.users[i].photos = JSON.parse(res.data.data.users[i].photos);
+            res.data.data.users[i].birthDay = comm.jsGetAge(new Date().getTime(),res.data.data.users[i].birthDay)
+          }
+
           setTimeout(function () {
             that.setData({
-              isFreshing:false
+              list: that.data.list.concat(res.data.data.users)
             });
-          },0)
-        },10)
+            setTimeout(function () {
+              that.setData({
+                isFreshing:false
+              });
+            },0)
+          },100);
+          that.data.page++;
+        }
       },function(err){
         console.log(err);
       });
@@ -148,16 +111,35 @@ Page({
       url: '/pages/guide/guide'
     })  
   },
+
+  // 跳转详情页
   toDetail: function (event) {
-    var p = event.currentTarget.id;
+    let p = event.currentTarget.id;
     wx.navigateTo({
       url: '/pages/detail/detail?id='+p
     })
   },
+
+  // 跳转活动介绍页
   toActivity: function (event) {
+
+    let p = event.currentTarget.id;
     wx.navigateTo({
-      url: '/pages/activity/activity'
+      url: '/pages/activity/activity?activityId='+p
     })
+  },
+
+  // 图片放大器
+  previewImage: function (e) {
+    var that = this;
+    var imgUrl = e.target.dataset.src;
+    var list = e.currentTarget.dataset.list;
+ 
+    wx.previewImage({
+      current: imgUrl, // 当前显示图片的http链接
+      urls: list // 需要预览的图片http链接列表
+    })
+
   },
 
 });

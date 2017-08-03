@@ -1,12 +1,11 @@
-<!--pages/activity/activity.wxml-->
 <import src="../../wxParse/wxParse.wxml"/>
 <view class="wrap">
      <view class="top">
-        <image src="./../../images/1.jpg" alt="图片加载失败" class="img"></image>
+        <image src="{{info.introduce}}" alt="图片加载失败" class="img"></image>
      </view>
      <view class="info">
-        <view class="title">学生活动第二期</view>
-        <view class="text">校园联谊活动说明校园联谊活动说明校园联谊活动说明校园联谊活动说明校园联谊活动说明</view>
+        <view class="title">{{info.title}}</view>
+        <view class="text">{{info.info}}</view>
      </view>
 
       <view class="footer" catchtap="toGuide">

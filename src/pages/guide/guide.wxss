@@ -1,26 +1,67 @@
-/* pages/guide/guide.wxss */
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .wrap{
   font-size:0;
+  position: fixed;
+  left:0;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 .poster{
-  width: 100%;
+  width: 60%;
   position:relative;
-  left:0;
+  left:20%;
   top:0;
   z-index:1;
+}
+.title{
+    padding-top:70rpx;
 }
 .download{
     width:100px;
     height:40px;
-    line-height:40px;
     font-size:16px;
     text-align:center;
-    color:white;
-    background-color:#0873FF;
-    border-radius:4px;
-    position:absolute;
-    bottom:20px;
+    margin:20px auto;
+}
+.download image{
+    display:block;
+    width:40px;
+    position:relative;
     left:50%;
-    margin-left:-50px;
-    z-index:999;
+    margin-left:-20px;
+}
+
+@-webkit-keyframes rightan{
+    0%
+    {
+
+        opacity: 0;
+    }
+    50%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        opacity: 0;
+    }
+}
+.rightan{
+    -webkit-animation: rightan 2s infinite;
+    -webkit-animation-fill-mode: both;
+}
+.code{
+    width: 80%;
+    position:relative;
+    left:10%;
+    top:0;
+    z-index:1;
+    margin:120px auto;
 }

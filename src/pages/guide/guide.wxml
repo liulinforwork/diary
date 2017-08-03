@@ -1,5 +1,10 @@
-<!--pages/guide/guide.wxml-->
-<view class="wrap">
-    <image class="poster" src="./../../images/3.png" mode="widthFix"></image>
-    <view class="download" bindtap="download">下载</view>
-</view>
+<scroll-view class="wrap" scroll-y="true" scroll-into-view="{{toView}}">
+    <image class="poster title" src="./../../images/q1.png" mode="widthFix"></image>
+    <image class="poster" src="./../../images/q2.png" mode="widthFix"></image>
+    <image class="poster" src="./../../images/q3.png" mode="widthFix"></image>
+    <view class="download" bindtap="choiceWordindex">
+        如何下载
+        <image src="./../../images/q4.png" mode="widthFix" class="rightan"></image>
+    </view>
+    <image id="load" src="./../../images/q5.png" mode="widthFix" class="code"></image>
+</scroll-view>
